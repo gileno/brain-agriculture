@@ -41,5 +41,15 @@ def test_farmer_detail(farmer_data, user):
     url = reverse('farmer-detail', kwargs={'pk': farmer.pk})
     response = client.get(url)
     assert response.status_code == status.HTTP_200_OK
-    print(response.data)
     assert response.data['document'] == '25207168002'
+
+
+@pytest.mark.django_db
+def test_farmer_list(farmer_data, user):
+    baker.make(Farmer, person_type=PersonTypeChoices.PF, document='25207168002', _quantity=10)
+    client = APIClient()
+    client.force_authenticate(user=user)
+    url = reverse('farmer-list')
+    response = client.get(url)
+    assert response.status_code == status.HTTP_200_OK
+    assert len(response.data['results']) == 10

@@ -41,7 +41,7 @@ class Farmer(BaseModel):
     name = models.CharField('Nome do produtor', max_length=50)
     farm_name = models.CharField('Nome da fazenda', max_length=50)
     person_type = models.CharField('Tipo da Pessoa', choices=constants.PersonTypeChoices.choices, max_length=2)
-    document = models.CharField('Documento', max_length=18)
+    document = models.CharField('Documento', max_length=18, unique=True)
     city = models.ForeignKey(City, models.PROTECT, verbose_name='Cidade', related_name='farmers')
     total_area = models.DecimalField('Área total (ha)', decimal_places=2, max_digits=8)
     arable_area = models.DecimalField('Área agricultável (ha)', decimal_places=2, max_digits=8)
