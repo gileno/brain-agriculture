@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'brain_agriculture.wsgi.application'
 DATABASES = {
     "default": config(
         "DATABASE_URL",
-        default="postgresql://brain_agriculture:brain_agriculture@127.0.0.1:5432/brain_agriculture",
+        default="sqlite:///db.sqlite3",
         cast=db_url
     )
 }

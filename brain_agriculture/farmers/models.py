@@ -1,3 +1,5 @@
+import re
+
 from django.db import models
 
 from localflavor.br.validators import BRCNPJValidator, BRCPFValidator
@@ -57,6 +59,7 @@ class Farmer(BaseModel):
             validator = BRCNPJValidator()
         if validator is not None:
             validator(self.document)
+        self.document = re.sub('[^0-9]+', '', self.document)
     
     class Meta:
         verbose_name = 'Produtor Rural'

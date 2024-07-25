@@ -8,8 +8,8 @@ from brain_agriculture.farmers import views as farmers_view
 
 router = DefaultRouter(trailing_slash=False)
 router.register('city', farmers_view.CityViewSet, basename='city')
-router.register('culture', farmers_view.CityViewSet, basename='culture')
-router.register('farmer', farmers_view.CityViewSet, basename='farmer')
+router.register('culture', farmers_view.CultureViewSet, basename='culture')
+router.register('farmer', farmers_view.FarmerViewSet, basename='farmer')
 
 
 urlpatterns = [
